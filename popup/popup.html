@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LTEP Privacy Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="../styles/scrollbar-animations.css">
+  <script src="../utils/performance-monitor.js"></script>
+  <script src="../utils/sw-manager.js"></script>
+  <script src="../utils/safe-chrome.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <img src="../icons/icon32.png" alt="LTEP" class="logo-icon">
+        <h1>LTEP</h1>
+      </div>
+      <div class="header-controls">
+        <div class="theme-toggle">
+          <label class="theme-switch" aria-label="Toggle dark/light mode">
+            <input type="checkbox" id="themeToggle">
+            <span class="theme-slider">
+              <span class="theme-icon sun">☀️</span>
+              <span class="theme-icon moon">🌙</span>
+            </span>
+          </label>
+        </div>
+        <div class="site-toggle">
+          <label class="toggle-switch" aria-label="Toggle protection for this site">
+            <input type="checkbox" id="siteProtectionToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <!-- Current Site Info -->
+    <div class="site-info">
+      <div class="site-name" id="siteName">Loading...</div>
+      <div class="site-status" id="siteStatus">Protected</div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="stats-header">
+      <h3>Protection Statistics</h3>
+      <div class="stats-info">
+        <span class="session-info" id="sessionInfo">Loading...</span>
+        <div class="stats-toggle">
+          <button class="stats-btn active" id="siteStatsBtn">This Site</button>
+          <button class="stats-btn" id="globalStatsBtn">All Sites</button>
+        </div>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card blocked">
+        <div class="stat-number" id="blockedCount">0</div>
+        <div class="stat-label" id="blockedLabel">Blocked on Site</div>
+      </div>
+      <div class="stat-card trackers">
+        <div class="stat-number" id="trackersCount">0</div>
+        <div class="stat-label">Trackers</div>
+      </div>
+      <div class="stat-card cookies">
+        <div class="stat-number" id="cookiesCount">0</div>
+        <div class="stat-label">Cookies</div>
+      </div>
+      <div class="stat-card fingerprinting">
+        <div class="stat-number" id="fingerprintingCount">0</div>
+        <div class="stat-label">Fingerprinting</div>
+      </div>
+    </div>
+
+    <!-- Blocked Requests List -->
+    <div class="blocked-section">
+      <h3>Blocked on This Page</h3>
+      <div class="blocked-list popup-scrollbar" id="blockedList">
+        <div class="loading">Loading blocked requests...</div>
+      </div>
+    </div>
+
+    <!-- Real-time Logs -->
+    <div class="logs-section">
+      <div class="logs-header">
+        <h3>Real-time Activity</h3>
+        <button class="btn-toggle" id="toggleLogs">Show Logs</button>
+      </div>
+      <div class="logs-container popup-scrollbar" id="logsContainer" style="display: none;">
+        <div class="logs-list" id="logsList">
+          <div class="loading">Connecting to real-time logs...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="actions">
+      <button class="btn btn-secondary" id="reportBreakage">
+        <span class="icon">⚠️</span>
+        Report Breakage
+      </button>
+      <button class="btn btn-secondary" id="debugPanel">
+        <span class="icon">🔧</span>
+        Debug
+      </button>
+      <button class="btn btn-primary" id="openOptions">
+        <span class="icon">⚙️</span>
+        Settings
+      </button>
+    </div>
+
+    <!-- Debug Panel -->
+    <div class="debug-section" id="debugSection" style="display: none;">
+      <h3>Debug Information</h3>
+      <div class="debug-content">
+        <div class="debug-item">
+          <span class="debug-label">Load Time:</span>
+          <span class="debug-value" id="debugLoadTime">--</span>
+        </div>
+        <div class="debug-item">
+          <span class="debug-label">Memory Usage:</span>
+          <span class="debug-value" id="debugMemory">--</span>
+        </div>
+        <div class="debug-item">
+          <span class="debug-label">Cache Hits:</span>
+          <span class="debug-value" id="debugCacheHits">--</span>
+        </div>
+        <div class="debug-item">
+          <span class="debug-label">Errors:</span>
+          <span class="debug-value" id="debugErrors">--</span>
+        </div>
+        <div class="debug-actions">
+          <button class="btn-mini" id="clearCache">Clear Cache</button>
+          <button class="btn-mini" id="exportLogs">Export Logs</button>
+          <button class="btn-mini" id="runDiagnostics">Run Tests</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="version">v1.0.0</div>
+      <div class="links">
+        <a href="#" id="helpLink">Help</a>
+        <a href="#" id="privacyLink">Privacy</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

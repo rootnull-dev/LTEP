@@ -1,0 +1,35 @@
+/* LTEP Scrollbar Styles - Minimal Version */
+
+/* Custom scrollbar for popup elements */
+.popup-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.popup-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.1);
+  border-radius: 2px;
+}
+
+.popup-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #334155 0%, #475569 100%);
+  border-radius: 2px;
+}
+
+.popup-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #475569 0%, #64748b 100%);
+}
+
+/* Dark mode scrollbar */
+@media (prefers-color-scheme: dark) {
+  .popup-scrollbar::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.2);
+  }
+  
+  .popup-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #64748b 0%, #94a3b8 100%);
+  }
+  
+  .popup-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #94a3b8 0%, #cbd5e1 100%);
+  }
+}

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LTEP Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="options.css">
+  <link rel="stylesheet" href="../styles/scrollbar-animations.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <img src="../icons/icon48.png" alt="LTEP" class="logo-icon">
+        <div>
+          <h1>LTEP Settings</h1>
+          <p>Lightweight Tracker & Exposure Protector</p>
+        </div>
+      </div>
+      <div class="header-controls">
+        <div class="theme-toggle">
+          <label class="theme-switch" aria-label="Toggle dark/light mode">
+            <input type="checkbox" id="themeToggle">
+            <span class="theme-slider">
+              <span class="theme-icon sun">☀️</span>
+              <span class="theme-icon moon">🌙</span>
+            </span>
+          </label>
+        </div>
+        <div class="version">v1.0.0</div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="general">General</button>
+      <button class="tab-btn" data-tab="blocking">Blocking Rules</button>
+      <button class="tab-btn" data-tab="sites">Site Settings</button>
+      <button class="tab-btn" data-tab="privacy">Privacy</button>
+      <button class="tab-btn" data-tab="advanced">Advanced</button>
+    </nav>
+
+    <!-- General Tab -->
+    <div class="tab-content active" id="general">
+      <section class="settings-section">
+        <h2>Protection Level</h2>
+        <div class="setting-group">
+          <label class="setting-item">
+            <input type="radio" name="protectionLevel" value="strict" id="strictMode">
+            <div class="setting-content">
+              <div class="setting-title">Strict</div>
+              <div class="setting-description">Maximum protection, may break some sites</div>
+            </div>
+          </label>
+          <label class="setting-item">
+            <input type="radio" name="protectionLevel" value="balanced" id="balancedMode" checked>
+            <div class="setting-content">
+              <div class="setting-title">Balanced (Recommended)</div>
+              <div class="setting-description">Good protection with minimal site breakage</div>
+            </div>
+          </label>
+          <label class="setting-item">
+            <input type="radio" name="protectionLevel" value="compatibility" id="compatibilityMode">
+            <div class="setting-content">
+              <div class="setting-title">Compatibility</div>
+              <div class="setting-description">Light protection, prioritizes site functionality</div>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>General Settings</h2>
+        <div class="setting-group">
+          <label class="toggle-setting">
+            <span class="setting-content">
+              <div class="setting-title">Block Third-Party Cookies</div>
+              <div class="setting-description">Prevent cross-site tracking cookies</div>
+            </span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="blockCookies" checked>
+              <span class="slider"></span>
+            </div>
+          </label>
+
+          <label class="toggle-setting">
+            <span class="setting-content">
+              <div class="setting-title">Block Fingerprinting</div>
+              <div class="setting-description">Prevent browser fingerprinting attempts</div>
+            </span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="blockFingerprinting" checked>
+              <span class="slider"></span>
+            </div>
+          </label>
+
+          <label class="toggle-setting">
+            <span class="setting-content">
+              <div class="setting-title">Show Notifications</div>
+              <div class="setting-description">Display blocking notifications</div>
+            </span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="showNotifications">
+              <span class="slider"></span>
+            </div>
+          </label>
+        </div>
+      </section>
+    </div>
+
+    <!-- Blocking Rules Tab -->
+    <div class="tab-content" id="blocking">
+      <section class="settings-section">
+        <h2>Rule Management</h2>
+        <div class="rule-stats">
+          <div class="stat-card">
+            <div class="stat-number" id="activeRules">20</div>
+            <div class="stat-label">Active Rules</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="lastUpdate">Today</div>
+            <div class="stat-label">Last Update</div>
+          </div>
+        </div>
+        
+        <div class="action-buttons">
+          <button class="btn btn-primary" id="updateRules">Update Rules</button>
+          <button class="btn btn-secondary" id="resetRules">Reset to Default</button>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>Custom Rules</h2>
+        <div class="custom-rules">
+          <textarea id="customRulesText" placeholder="Add custom blocking rules (one domain per line)&#10;example.com&#10;tracker.example.org"></textarea>
+          <button class="btn btn-primary" id="saveCustomRules">Save Custom Rules</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Site Settings Tab -->
+    <div class="tab-content" id="sites">
+      <section class="settings-section">
+        <h2>Site-Specific Settings</h2>
+        <div class="site-search">
+          <input type="text" id="siteSearch" placeholder="Search sites...">
+        </div>
+        <div class="site-list" id="siteList">
+          <div class="loading">Loading site settings...</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Privacy Tab -->
+    <div class="tab-content" id="privacy">
+      <section class="settings-section">
+        <h2>Privacy & Data</h2>
+        <div class="setting-group">
+          <label class="toggle-setting">
+            <span class="setting-content">
+              <div class="setting-title">Anonymous Usage Statistics</div>
+              <div class="setting-description">Help improve LTEP by sharing anonymous usage data</div>
+            </span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="allowTelemetry">
+              <span class="slider"></span>
+            </div>
+          </label>
+        </div>
+
+        <div class="data-actions">
+          <button class="btn btn-secondary" id="exportData">Export Settings</button>
+          <button class="btn btn-secondary" id="importData">Import Settings</button>
+          <button class="btn btn-danger" id="clearData">Clear All Data</button>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>Statistics</h2>
+        <div class="stats-overview">
+          <div class="stat-row">
+            <span>Total Requests Blocked:</span>
+            <span id="totalBlocked">0</span>
+          </div>
+          <div class="stat-row">
+            <span>Trackers Blocked:</span>
+            <span id="trackersBlocked">0</span>
+          </div>
+          <div class="stat-row">
+            <span>Cookies Blocked:</span>
+            <span id="cookiesBlocked">0</span>
+          </div>
+          <div class="stat-row">
+            <span>Sites Protected:</span>
+            <span id="sitesProtected">0</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Advanced Tab -->
+    <div class="tab-content" id="advanced">
+      <section class="settings-section">
+        <h2>Advanced Options</h2>
+        <div class="setting-group">
+          <label class="toggle-setting">
+            <span class="setting-content">
+              <div class="setting-title">Debug Mode</div>
+              <div class="setting-description">Enable detailed logging for troubleshooting</div>
+            </span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="debugMode">
+              <span class="slider"></span>
+            </div>
+          </label>
+
+          <label class="toggle-setting">
+            <span class="setting-content">
+              <div class="setting-title">Safe Mode</div>
+              <div class="setting-description">Disable all blocking (emergency fallback)</div>
+            </span>
+            <div class="toggle-switch">
+              <input type="checkbox" id="safeMode">
+              <span class="slider"></span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>Developer Tools</h2>
+        <div class="dev-tools">
+          <button class="btn btn-secondary" id="viewLogs">View Extension Logs</button>
+          <button class="btn btn-secondary" id="testRules">Test Blocking Rules</button>
+          <button class="btn btn-secondary" id="generateReport">Generate Debug Report</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#" id="helpLink">Help & Documentation</a>
+        <a href="#" id="privacyPolicyLink">Privacy Policy</a>
+        <a href="#" id="githubLink">GitHub Repository</a>
+      </div>
+      <div class="footer-info">
+        <span>LTEP v1.0.0 - Enterprise-grade privacy protection</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
