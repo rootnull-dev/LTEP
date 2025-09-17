@@ -203,4 +203,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **LTEP v1.0.0** - Built with ❤️ for privacy-conscious users and enterprises.
 
-*Made by [Your Name] - Follow me on [GitHub](https://github.com/[YOUR_USERNAME])*
+*Made by Ayan - Follow me on [GitHub](https://github.com/[rootnull-dev])*
